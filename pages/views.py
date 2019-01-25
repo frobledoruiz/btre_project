@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from realtors.models import Realtor
 
+from listings.models import Listing
+
 
 def index(request):
-    return render(request, 'pages/index.html')
+    listings = Listing.objects.order_by(
+        '-list_date').filter(is_published=True)[0:3]
+
+    context = {
+        'listings': listings,
+    }
+    return render(request, 'pages/index.html', context)
 
 
 def about(request):
