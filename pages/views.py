@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from realtors.models import Realtor
+from listings.choices import bedroom_choices, state_choices, price_choices
 
 from listings.models import Listing
 
@@ -10,6 +11,9 @@ def index(request):
 
     context = {
         'listings': listings,
+        'state_choices': state_choices,
+        'bedroom_choices': bedroom_choices,
+        'price_choices': price_choices,
     }
     return render(request, 'pages/index.html', context)
 
